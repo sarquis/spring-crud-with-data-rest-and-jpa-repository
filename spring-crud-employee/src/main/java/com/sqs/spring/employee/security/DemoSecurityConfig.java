@@ -14,11 +14,28 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class DemoSecurityConfig {
 
+    /*
+     * Using CUSTOM TABLES for Authentication.
+     */
     @Bean
     UserDetailsManager userDetailsManager(DataSource dataSource) {
+	JdbcUserDetailsManager theUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-	return new JdbcUserDetailsManager(dataSource);
+	theUserDetailsManager.setUsersByUsernameQuery("SELECT user_id, pw, active FROM members WHERE user_id = ?");
+
+	theUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT user_id, role FROM roles WHERE user_id = ?");
+
+	return theUserDetailsManager;
     }
+
+    /*
+     * USING DEFAULT SPRING SEC TABLES SCHEMA.
+     */
+    /*
+     * @Bean UserDetailsManager userDetailsManager(DataSource dataSource) {
+     * 
+     * return new JdbcUserDetailsManager(dataSource); }
+     */
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
