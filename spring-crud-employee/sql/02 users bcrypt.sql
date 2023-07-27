@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
 	`username` 	varchar(50) NOT NULL,
-	`password` 	varchar(50) NOT NULL,
+	`password` 	varchar(68) NOT NULL,
 	`enabled` 	tinyint NOT NULL,
 	
 	PRIMARY KEY (`username`)	
@@ -21,9 +21,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users`
 VALUES
-('john',  '{noop}test123',1),
-('mary',  '{noop}test123',1),
-('susan', '{noop}test123',1);
+('john',  '{bcrypt}$2a$10$EPFqkiGHCJQgcXmy.Ce4AeMDogtHX6/SH6A8XM7v4jhhHbcmEqc2q',1),
+('mary',  '{bcrypt}$2a$10$EPFqkiGHCJQgcXmy.Ce4AeMDogtHX6/SH6A8XM7v4jhhHbcmEqc2q',1),
+('susan', '{bcrypt}$2a$10$EPFqkiGHCJQgcXmy.Ce4AeMDogtHX6/SH6A8XM7v4jhhHbcmEqc2q',1);
 
 --
 -- Table structure for table `authorities`
