@@ -43,7 +43,8 @@ public class DemoSecurityConfig {
 	// @formatter:off
 	http.authorizeHttpRequests(configurer ->
 		configurer
-			.requestMatchers(HttpMethod.GET, "/").hasRole("EMPLOYEE")
+			.requestMatchers(HttpMethod.GET, "/").hasRole("EMPLOYEE") // For Thymeleaf Demo
+			.requestMatchers(HttpMethod.GET, "/css/**").hasRole("EMPLOYEE") // For Thymeleaf Demo
 			.requestMatchers(HttpMethod.GET, "/api/employees").hasRole("EMPLOYEE")
 			.requestMatchers(HttpMethod.GET, "/api/employees/**").hasRole("EMPLOYEE")
 			.requestMatchers(HttpMethod.POST, "/api/employees").hasRole("MANAGER")
